@@ -1,8 +1,22 @@
 import hashlib
 
 def identify(hash):
-    pass
-
+    try: 
+        int(hash, 16)
+        if len(hash) == 32:
+            print("Hash type: MD5")
+        elif len(hash) == 40:
+            print("Hash type: SHA1")
+        elif len(hash) == 56:
+            print("Hash type: SHA224")
+        elif len(hash) == 64:
+            print("Hash type: SHA256")
+        elif len(hash) == 96:
+            print("Hash type: SHA384")
+        elif len(hash) == 128:
+            print("Hash type: SHA512")
+    except:
+        print("Invalid hash")
 
 
 def hash_string(string):
@@ -90,7 +104,8 @@ Select an option: """))
 
 match user_input:
     case 1:
-        pass
+        print("Only works with MD5, SHA1, SHA224, SHA256, SHA384, SHA512")
+        identify(input("Specify hash: "))
     case 2:
         hash_string(input("Please enter a string to be hashed: "))
     case 3:
