@@ -4,7 +4,27 @@ def identify(hash):
     pass
 
 def hash_string(string):
-    pass
+    
+    string_in_byte = string.encode()
+
+    hashes = sorted(list(hashlib.algorithms_guaranteed))
+    print("Please select a hash")
+    
+    count = 1
+    for i in hashes:
+        print(f"{count}: {i}")
+        count += 1
+    
+    hash_selection = int(input("Enter option: "))
+    
+    h = hashlib.new(hashes[hash_selection - 1])
+    h.update(string_in_byte)
+    hashed = h.hexdigest()
+    
+    print(f"Original String is: {string}")
+    print(f"{hashes[hash_selection - 1]} is {hashed}")
+
+
 
 def crack_hash(hash):
     pass
@@ -22,16 +42,17 @@ print("""
                        \|_________|                                       """)
 
 print("Please select an option:")
-user_input = input("""1. Identify Hash
+user_input = int(input("""1. Identify Hash
 2. Hash     
 3. Crack Hash
-Select an option: """)
+Select an option: """))
 
 match user_input:
     case 1:
         pass
     case 2:
-        pass
+        user_input = input("Please enter a string to be hashed: ")
+        hash_string(user_input)
     case 3:
         pass
     case _:
